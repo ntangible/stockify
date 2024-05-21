@@ -10,7 +10,7 @@ const StockChart = ({ stock }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/daily/${stock}`);
+                const response = await axios.get(`http://localhost:5000/api/daily/${stock}`);
                 const { stockData } = response.data;
                 const ohlc = [], volume = [], dataLength = stockData.length, groupingUnits = [["week", [1]],["month", [1, 2, 3, 4, 6]]];
 
