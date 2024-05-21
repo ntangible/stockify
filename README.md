@@ -8,8 +8,8 @@ A basic website that shows daily market values for various stocks. Users can sea
 - Have `node` and `npm` installed and setup
 - Run `npm i`  inside the root project folder to initialize and install all node modules
 - Run `npm start` inside the root project folder to start the application
-- The web app should be accessible from `http://localhost:5000` in a browser
-    - The backend can be tested by accessing `http://localhost:3000` in a browser
+- The web app should be accessible from `http://localhost:3000` in a browser
+    - The backend can be tested by accessing `http://localhost:5000` in a browser
 
 ## Technical Overview
 The frontend is built on ReactJS with primarily
