@@ -1,5 +1,7 @@
 # STOCKIFY
-A basic website that shows daily market values for various stocks. Users can search for stocks, view daily OHLCV data, and add them to a list to follow.
+A basic website that shows daily market values for various stocks. Users can search for stocks, view daily OHLCV[^1] data, and add them to a list to follow.
+
+[^1]: OHLCV stands for Open, High, Low, Close, and Volume
 
 ## Setup
 - Clone the Github repository or download the repo through the website
