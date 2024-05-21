@@ -1,0 +1,13 @@
+{
+  "name": "stockify",
+  "version": "0.1.0",
+  "scripts": {
+    "postinstall": "cd client && npm install && cd ../server && npm install",
+    "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
+    "start:server": "npm start --prefix server",
+    "start:client": "npm start --prefix client"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
