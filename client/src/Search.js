@@ -11,7 +11,7 @@ const SearchBar = ({AddItem, StockClick}) => {
 
     const search = async (term) => {
         try {
-            const response = await axios.get(`http://localhost:3000/api/search/${term}`);
+            const response = await axios.get(`http://localhost:5000/api/search/${term}`);
 
             SetSearchResults(response.data);
         }
