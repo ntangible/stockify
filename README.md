@@ -3,6 +3,9 @@ A basic website that shows daily market values for various stocks. Users can sea
 
 [^1]: OHLCV stands for Open, High, Low, Close, and Volume
 
+## Notes
+Due to the limited nature of the Free API key from Alpha Vantage, API requests are limited to 25 per day. You are free to sign up for a new free API key at the link [here](https://www.alphavantage.co/support/#api-key) and replace the key located on the first line of [server.js](server/server.js).
+
 ## Setup
 - Clone the Github repository or download the repo through the website
 - Have `node` and `npm` installed and setup
@@ -22,6 +25,3 @@ The backend is built on ExpressJS with primarily
 - [Alpha Vantage](https://www.alphavantage.co/) API integration for obtaining realtime and historical stock market data
 
 User data (such as the following list) is stored in the form of cookies in the browser for data persistency.
-
-## Notes
-Due to the limited nature of the Free API key from Alpha Vantage, API requests are limited to 25 per day. You are free to sign up for a new free API key at the link [here](https://www.alphavantage.co/support/#api-key) and replace the key located on the first line of [server.js](server/server.js).
