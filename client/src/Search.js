@@ -8,15 +8,25 @@ import AddIcon from '@mui/icons-material/Add';
 const SearchBar = ({AddItem, StockClick}) => {
     const [searchTerm, SetSearchTerm] = React.useState('');
     const [searchResults, SetSearchResults] = React.useState([]);
+    const [result, SetResult] = React.useState('');
 
     const search = async (term) => {
         try {
             const response = await axios.get(`http://localhost:5000/api/search/${term}`);
 
+            SetResult('');
+
             SetSearchResults(response.data);
         }
         catch (error) {
-            console.error('Error fetching search results:', error);
+            if (error.response) {
+                console.error(`Error ${error.response.status}: ${error.response.data.error}`);
+                SetResult(error.response.data['error']);
+                SetSearchResults([]);
+            }
+            else {
+                console.error('Error fetching search results:', error);
+            }
         }
     }
 
@@ -34,6 +44,11 @@ const SearchBar = ({AddItem, StockClick}) => {
                     </IconButton>
                 </Tooltip>
             </Paper>
+            {result ? (
+                <Paper sx={{ mt: 2, p: 2, backgroundColor: 'error.main', color: 'white' }}>
+                    {result}
+                </Paper>
+            ) : (<Divider/>)}
             {searchResults.length > 0 ? (
                 <Paper>
                     <List sx={{ bgcolor: 'background.paper', marginTop: 1}}>

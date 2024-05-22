@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 const StockChart = ({ stock, AddItem }) => {
     const [chartOptions, setChartOptions] = useState(null);
     const [metaData, SetMetaData] = useState(null);
+    const [result, SetResult] = useState('');
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -76,7 +77,13 @@ const StockChart = ({ stock, AddItem }) => {
                 setChartOptions(options);
             } 
             catch (error) {
-                console.error("Error fetching stock data:", error);
+                if (error.response) {
+                    console.error(`Error ${error.response.status}: ${error.response.data.error}`);
+                    SetResult(error.response.data['error']);
+                }
+                else {
+                    console.error("Error fetching stock data:", error);
+                }
             }
         };
         
@@ -89,7 +96,11 @@ const StockChart = ({ stock, AddItem }) => {
                 Add to follow list
             </Button>
             <Divider sx={{borderBottomWidth: 5 }}/>
-        {chartOptions && (
+        {result ? (
+            <Paper sx={{ mt: 2, p: 2, backgroundColor: 'error.main', color: 'white' }}>
+                {result}
+            </Paper>
+        ) : (
             <HighchartsReact
             highcharts={Highcharts}
             constructorType={"stockChart"}
