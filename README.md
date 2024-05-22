@@ -4,7 +4,13 @@ A basic website that shows daily market values for various stocks. Users can sea
 [^1]: OHLCV stands for Open, High, Low, Close, and Volume
 
 ## Notes
-Due to the limited nature of the Free API key from Alpha Vantage, API requests are limited to 25 per day. You are free to sign up for a new free API key at the link [here](https://www.alphavantage.co/support/#api-key) and replace the key located on the first line of [server.js](server/server.js).
+Due to the limited nature of the Free API key from Alpha Vantage, API requests are limited to 25 per day. It is strongly suggested to sign up for a new free API key due API request limits at the link [here](https://www.alphavantage.co/support/#api-key) and replace the key located on the first line of [server.js](server/server.js). Signup requires an email (fake or real) and something to fill the origanization field.
+- API limits appear to also be tied to IP addresses as well
+
+## Features
+- Look up various stocks
+- Add stocks to a list for easy tracking and following
+- View historical daily OHLCV data for stocks that are updated daily
 
 ## Setup
 - Clone the Github repository or download the repo through the website
