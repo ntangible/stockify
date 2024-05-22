@@ -18,6 +18,12 @@ app.get('/api/daily/demo', async (req, res) => {
 
     try {
         const response = await axios.get(url);
+
+        if (response.data['Information']) {
+            res.status(429).json({ error: response.data['Information'] });
+            return;
+        }
+
         const data = response.data['Time Series (Daily)'];
         const metaData = response.data['Meta Data'];
         const formattedData = Object.keys(data).map(date => {
@@ -51,6 +57,12 @@ app.get('/api/daily/:symbol/', async (req, res) => {
 
     try {
         const response = await axios.get(url);
+
+        if (response.data['Information']) {
+            res.status(429).json({ error: response.data['Information'] });
+            return;
+        }
+
         const data = response.data['Time Series (Daily)'];
         const metaData = response.data['Meta Data'];
         const formattedData = Object.keys(data).map(date => {
@@ -83,6 +95,11 @@ app.get('/api/search/demo', async (req, res) => {
 
     try {
         const response = await axios.get(url);
+
+        if (response.data['Information']) {
+            res.status(429).json({ error: response.data['Information'] });
+        }
+
         const data = response.data['bestMatches'];
 
         res.json(data);
@@ -99,6 +116,12 @@ app.get('/api/search/:name', async (req, res) => {
 
     try {
         const response = await axios.get(url);
+
+        if (response.data['Information']) {
+            res.status(429).json({ error: response.data['Information'] });
+            return;
+        }
+
         const data = response.data['bestMatches'];
 
         res.json(data);
