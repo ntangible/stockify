@@ -1,5 +1,6 @@
 import ClearIcon from '@mui/icons-material/Clear';
 import { Box, List, ListItem, ListItemText, ListItemButton, Divider, Paper, IconButton, Tooltip } from '@mui/material';
+import Button from "@mui/material/Button";
 
 const StockCart = ({cartItems, ClearCart, StockClick, RemoveItem}) => {
     const RenderCart = (items) => {
@@ -17,13 +18,11 @@ const StockCart = ({cartItems, ClearCart, StockClick, RemoveItem}) => {
         else {
             return (
                 <Paper>
+                    <Button onClick={() => ClearCart()} sx={{width: 'calc(100%)'}}>
+                        Click to clear list
+                    </Button>
+                    <Divider sx={{borderBottomWidth: 5 }}/>
                     <List>
-                        <ListItem>
-                            <ListItemButton onClick={() => ClearCart()}>
-                                <ListItemText primary='Click to clear list' sx={{textAlign: 'center'}}/>
-                            </ListItemButton>
-                        </ListItem>
-                        <Divider sx={{borderBottomWidth: 5 }}/>
                         {items.map((item) => (
                             <ListItem key={item}>
                                 <Tooltip title={`View ${item}`} placement="bottom-start">
