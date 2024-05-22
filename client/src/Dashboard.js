@@ -68,7 +68,7 @@ export default function Dashboard() {
     setOpen(!open);
   }
 
-  const [cartItems, SetCartItems] = React.useState([]);
+  const [cartItems, SetCartItems] = React.useState(['AAPL']);
 
   const ClearCart = () => {
     SetCartItems([]);
@@ -80,7 +80,13 @@ export default function Dashboard() {
   }
 
   const AddItem = (item) => {
-    SetCartItems(prev => [...prev, item]);
+    SetCartItems(prev => {
+      if (!prev.includes(item)) {
+        return [...prev, item];
+      }
+      else
+        return prev;
+    });
   }
 
   const [cookies, SetCookie] = useCookies(['cartItems']);
@@ -148,7 +154,7 @@ export default function Dashboard() {
     title = 'Search';
   }
   else if (page === 'stock') {
-    pageContent = <StockChart stock={currStock}/>;
+    pageContent = <StockChart stock={currStock} AddItem={AddItem}/>;
     title = `${currStock}`;
   }
 

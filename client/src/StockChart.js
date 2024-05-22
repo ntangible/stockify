@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import axios from 'axios';
-import { Paper } from "@mui/material";
+import { Paper, Divider } from "@mui/material";
+import Button from "@mui/material/Button";
 
 /* Adapted example that was provided here: https://codesandbox.io/p/sandbox/moxp4310l8 */
-const StockChart = ({ stock }) => {
+const StockChart = ({ stock, AddItem }) => {
     const [chartOptions, setChartOptions] = useState(null);
+    const [metaData, SetMetaData] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/daily/${stock}`);
-                const { stockData } = response.data;
+                const { stockData, metaData } = response.data;
+                SetMetaData(metaData)
                 const ohlc = [], volume = [], dataLength = stockData.length, groupingUnits = [["week", [1]],["month", [1, 2, 3, 4, 6]]];
 
                 for (let i = 0; i < dataLength; i += 1) {
@@ -82,6 +85,10 @@ const StockChart = ({ stock }) => {
 
     return (
         <Paper sx={{width: 'calc(100%)'}}>
+            <Button sx={{width: 'calc(100%)'}} onClick={() => AddItem(metaData['2. Symbol'])}>
+                Add to follow list
+            </Button>
+            <Divider sx={{borderBottomWidth: 5 }}/>
         {chartOptions && (
             <HighchartsReact
             highcharts={Highcharts}
